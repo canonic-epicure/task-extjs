@@ -46,7 +46,7 @@
 # Avoid archives of this distribution
 \bTask.ExtJS-[\d\.\_]+
 \.project$
-\.git$
+^\.git\b
 \.tar.gz$
 ^tests/lib/
 Task.ExtJS-3.01
