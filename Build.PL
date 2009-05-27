@@ -8,7 +8,7 @@ my $build = Module::Build::JSAN->new(
 	dist_version   => 3.01,
 	dist_author   => 'SamuraiJack',
 	dist_abstract  => 'ExtJS framework',
-	license        => 'GPL 3.0',
+	license        => 'gpl3',
 );
 
 $build->create_build_script;
