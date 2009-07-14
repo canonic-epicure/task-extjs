@@ -23,8 +23,13 @@ Ext.menu.Item = function(config){
     }
 };
 Ext.extend(Ext.menu.Item, Ext.menu.BaseItem, {
+    <div id="prop-Ext.menu.Item-menu"></div>/**
+     * @property menu
+     * @type Ext.menu.Menu
+     * The submenu associated with this Item if one was configured.
+     */
     <div id="cfg-Ext.menu.Item-menu"></div>/**
-     * @cfg {Mixed} menu Either an instance of {@link Ext.menu.Menu} or the config object for an
+     * @cfg {Mixed} menu (optional) Either an instance of {@link Ext.menu.Menu} or the config object for an
      * {@link Ext.menu.Menu} which acts as the submenu when this item is activated.
      */
     <div id="cfg-Ext.menu.Item-icon"></div>/**
@@ -71,7 +76,7 @@ Ext.extend(Ext.menu.Item, Ext.menu.BaseItem, {
                         ' target="{hrefTarget}"',
                     '</tpl>',
                  '>',
-                     '<img src="{icon}" class="x-menu-item-icon {iconCls}">',
+                     '<img src="{icon}" class="x-menu-item-icon {iconCls}"/>',
                      '<span class="x-menu-item-text">{text}</span>',
                  '</a>'
              );

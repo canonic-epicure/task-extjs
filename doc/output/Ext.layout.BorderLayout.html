@@ -38,8 +38,8 @@ levels.</p>
     },{
         <a href="output/Ext.Panel.html#Ext.Panel-title" ext:member="title" ext:cls="Ext.Panel">title</a>: <em>'Center Region'</em>,
         <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-BorderLayout.Region" ext:member="BorderLayout.Region" ext:cls="Ext.layout.BorderLayout.Region">region</a>: <em>'center'</em>,     <i>// center region is required, no width/height specified</i>
-    	<a href="output/Ext.Component.html#Ext.Component-xtype" ext:member="xtype" ext:cls="Ext.Component">xtype</a>: <em>'container'</em>,
-    	<a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout</a>: <em>'fit'</em>,
+        <a href="output/Ext.Component.html#Ext.Component-xtype" ext:member="xtype" ext:cls="Ext.Component">xtype</a>: <em>'container'</em>,
+        <a href="output/Ext.Container.html#Ext.Container-layout" ext:member="layout" ext:cls="Ext.Container">layout</a>: <em>'fit'</em>,
         <a href="output/Ext.layout.BorderLayout.Region.html#Ext.layout.BorderLayout.Region-margins" ext:member="margins" ext:cls="Ext.layout.BorderLayout.Region">margins</a>: <em>'5 5 0 0'</em>
     }]
 });</code></pre>
@@ -50,23 +50,21 @@ the other regions in the layout.</li>
 <li>Any child items with a region of <tt>west</tt> or <tt>east</tt> must have <tt>width</tt> defined
 (an integer representing the number of pixels that the region should take up).</li>
 <li>Any child items with a region of <tt>north</tt> or <tt>south</tt> must have <tt>height</tt> defined.</li>
-<li>The regions of a BorderLayout are <b>fixed at render time</b> and thereafter.  Containers
-<b>directly</b> managed by BorderLayout may not be removed or added</b>.  To add/remove
-Containers within a BorderLayout have them wrapped by an additional Container which is directly
+<li>The regions of a BorderLayout are <b>fixed at render time</b> and thereafter, its child Components may not be removed or added</b>.  To add/remove
+Components within a BorderLayout, have them wrapped by an additional Container which is directly
 managed by the BorderLayout.  If the region is to be collapsible, the Container used directly
 by the BorderLayout manager should be a Panel.  In the following example a Container (an Ext.Panel)
 is added to the west region:
-<pre><code>wrc = <a href="output/Ext.html#Ext-getCmp" ext:member="getCmp" ext:cls="Ext">Ext.getCmp</a>(<em>'west-region-container'</em>);
-wrc.<a href="output/Ext.Panel.html#Ext.Panel-collapse" ext:member="collapse" ext:cls="Ext.Panel">collapse</a>();
+<div style="margin-left:16px"><pre><code>wrc = <a href="output/Ext.html#Ext-getCmp" ext:member="getCmp" ext:cls="Ext">Ext.getCmp</a>(<em>'west-region-container'</em>);
+wrc.<a href="output/Ext.Panel.html#Ext.Panel-removeAll" ext:member="removeAll" ext:cls="Ext.Panel">removeAll</a>();
 wrc.<a href="output/Ext.Container.html#Ext.Container-add" ext:member="add" ext:cls="Ext.Container">add</a>({
     title: <em>'Added Panel'</em>,
     html: <em>'Some content'</em>
 });
-wrc.<a href="output/Ext.Container.html#Ext.Container-doLayout" ext:member="doLayout" ext:cls="Ext.Container">doLayout</a>();
-wrc.<a href="output/Ext.Panel.html#Ext.Panel-expand" ext:member="expand" ext:cls="Ext.Panel">expand</a>();</code></pre>
+wrc.<a href="output/Ext.Container.html#Ext.Container-doLayout" ext:member="doLayout" ext:cls="Ext.Container">doLayout</a>();</code></pre></div>
 </li>
 <li> To reference a <a href="output/Ext.layout.BorderLayout.Region.html" ext:cls="Ext.layout.BorderLayout.Region">Region</a>:
-<pre><code>wr = myBorderPanel.layout.west;</code></pre>
+<div style="margin-left:16px"><pre><code>wr = myBorderPanel.layout.west;</code></pre></div>
 </li>
 </ul></div></div><div class="hr"></div><a id="Ext.layout.BorderLayout-configs"></a><h2>Config Options</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Config Options</th><th class="msource-header">Defined By</th></tr><tr class="config-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.layout.ContainerLayout-extraCls"></a><b><a href="source/ContainerLayout.html#cfg-Ext.layout.ContainerLayout-extraCls">extraCls</a></b> : String<div class="mdesc"><div class="short">An optional extra CSS class that will be added to the container. This can be useful for adding
 customized styles to t...</div><div class="long"><p>An optional extra CSS class that will be added to the container. This can be useful for adding
@@ -81,9 +79,9 @@ which assign a value by default:
 </ul></div>
 To configure the above Classes with an extra CSS class append to the default.  For example,
 for ColumnLayout:<pre><code>extraCls: <em>'x-column custom-class'</em></code></pre>
-</p></div></div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#extraCls" ext:member="#extraCls" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr><tr class="config-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.layout.ContainerLayout-fieldTpl"></a><b><a href="source/ContainerLayout.html#cfg-Ext.layout.ContainerLayout-fieldTpl">fieldTpl</a></b> : Ext.Template<div class="mdesc"><div class="short">A Ext.Template used by Field rendering layout classes (such as
-Ext.layout.FormLayout) to create the DOM structure of ...</div><div class="long">A <a href="output/Template.html" ext:cls="Template">Ext.Template</a> used by Field rendering layout classes (such as
+</p></div></div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#extraCls" ext:member="#extraCls" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr><tr class="config-row  inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.layout.ContainerLayout-renderHidden"></a><b><a href="source/ContainerLayout.html#cfg-Ext.layout.ContainerLayout-renderHidden">renderHidden</a></b> : Boolean<div class="mdesc">True to hide each contained item on render (defaults to false).</div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#renderHidden" ext:member="#renderHidden" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr></tbody></table><a id="Ext.layout.BorderLayout-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row expandable inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.layout.ContainerLayout-fieldTpl"></a><b><a href="source/ContainerLayout.html#prop-Ext.layout.ContainerLayout-fieldTpl">fieldTpl</a></b> : Ext.Template<div class="mdesc"><div class="short">The Ext.Template used by Field rendering layout classes (such as
+Ext.layout.FormLayout) to create the DOM structure o...</div><div class="long">The <a href="output/Template.html" ext:cls="Template">Ext.Template</a> used by Field rendering layout classes (such as
 <a href="output/Ext.layout.FormLayout.html" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout</a>) to create the DOM structure of a fully wrapped,
 labeled and styled form Field. A default Template is supplied, but this may be
 overriden to create custom field structures. The template processes values returned from
-<a href="output/Ext.form.FormLayout.html#Ext.form.FormLayout-getTemplateArgs" ext:member="getTemplateArgs" ext:cls="Ext.form.FormLayout">Ext.form.FormLayout.getTemplateArgs</a>.</div></div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#fieldTpl" ext:member="#fieldTpl" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr><tr class="config-row  inherited"><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.layout.ContainerLayout-renderHidden"></a><b><a href="source/ContainerLayout.html#cfg-Ext.layout.ContainerLayout-renderHidden">renderHidden</a></b> : Boolean<div class="mdesc">True to hide each contained item on render (defaults to false).</div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#renderHidden" ext:member="#renderHidden" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr></tbody></table><a id="Ext.layout.BorderLayout-props"></a><h2>Public Properties</h2><div class="no-members">This class has no public properties.</div><a id="Ext.layout.BorderLayout-methods"></a><h2>Public Methods</h2><div class="no-members">This class has no public methods.</div><a id="Ext.layout.BorderLayout-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>
+<a href="output/Ext.layout.FormLayout.html#Ext.layout.FormLayout-getTemplateArgs" ext:member="getTemplateArgs" ext:cls="Ext.layout.FormLayout">Ext.layout.FormLayout.getTemplateArgs</a>.</div></div></td><td class="msource"><a href="output/Ext.layout.ContainerLayout.html#fieldTpl" ext:member="#fieldTpl" ext:cls="Ext.layout.ContainerLayout">ContainerLayout</a></td></tr></tbody></table><a id="Ext.layout.BorderLayout-methods"></a><h2>Public Methods</h2><div class="no-members">This class has no public methods.</div><a id="Ext.layout.BorderLayout-events"></a><h2>Public Events</h2><div class="no-members">This class has no public events.</div></div>

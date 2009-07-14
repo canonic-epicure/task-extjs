@@ -49,8 +49,8 @@ var myBorderPanel = new Ext.Panel({
     },{
         {@link Ext.Panel#title title}: 'Center Region',
         {@link Ext.layout.BorderLayout.Region#BorderLayout.Region region}: 'center',     // center region is required, no width/height specified
-    	{@link Ext.Component#xtype xtype}: 'container',
-    	{@link Ext.Container#layout layout}: 'fit',
+        {@link Ext.Component#xtype xtype}: 'container',
+        {@link Ext.Container#layout layout}: 'fit',
         {@link Ext.layout.BorderLayout.Region#margins margins}: '5 5 0 0'
     }]
 });
@@ -62,28 +62,25 @@ var myBorderPanel = new Ext.Panel({
  * <li>Any child items with a region of <tt>west</tt> or <tt>east</tt> must have <tt>width</tt> defined
  * (an integer representing the number of pixels that the region should take up).</li>
  * <li>Any child items with a region of <tt>north</tt> or <tt>south</tt> must have <tt>height</tt> defined.</li>
- * <li>The regions of a BorderLayout are <b>fixed at render time</b> and thereafter.  Containers
- * <b>directly</b> managed by BorderLayout may not be removed or added</b>.  To add/remove
- * Containers within a BorderLayout have them wrapped by an additional Container which is directly
+ * <li>The regions of a BorderLayout are <b>fixed at render time</b> and thereafter, its child Components may not be removed or added</b>.  To add/remove
+ * Components within a BorderLayout, have them wrapped by an additional Container which is directly
  * managed by the BorderLayout.  If the region is to be collapsible, the Container used directly
  * by the BorderLayout manager should be a Panel.  In the following example a Container (an Ext.Panel)
  * is added to the west region:
- * <pre><code>
+ * <div style="margin-left:16px"><pre><code>
 wrc = {@link Ext#getCmp Ext.getCmp}('west-region-container');
-wrc.{@link Ext.Panel#collapse collapse}();
+wrc.{@link Ext.Panel#removeAll removeAll}();
 wrc.{@link Ext.Container#add add}({
     title: 'Added Panel',
     html: 'Some content'
 });
 wrc.{@link Ext.Container#doLayout doLayout}();
-wrc.{@link Ext.Panel#expand expand}();
- * </code></pre>
+ * </code></pre></div>
  * </li>
  * <li> To reference a {@link Ext.layout.BorderLayout.Region Region}:
- * <pre><code>
+ * <div style="margin-left:16px"><pre><code>
 wr = myBorderPanel.layout.west;
-
- * </code></pre>
+ * </code></pre></div>
  * </li>
  * </ul></div>
  */
@@ -301,14 +298,14 @@ Ext.layout.BorderLayout.Region.prototype = {
 }</code></pre>
      * <p>May also be a string containing space-separated, numeric margin values. The order of the
      * sides associated with each value matches the way CSS processes margin values:</p>
-     * <p><ul>
+     * <p><div class="mdetail-params"><ul>
      * <li>If there is only one value, it applies to all sides.</li>
      * <li>If there are two values, the top and bottom borders are set to the first value and the
      * right and left are set to the second.</li>
      * <li>If there are three values, the top is set to the first value, the left and right are set
      * to the second, and the bottom is set to the third.</li>
      * <li>If there are four values, they apply to the top, right, bottom, and left, respectively.</li>
-     * </ul></p>
+     * </ul></div></p>
      * <p>Defaults to:</p><pre><code>
      * {top:0, right:0, bottom:0, left:0}
      * </code></pre>
@@ -702,8 +699,11 @@ Ext.layout.BorderLayout.Region.prototype = {
         Ext.getDoc().un("click", this.slideInIf, this);
     },
 
-    // these names are backwards but not changed for compat
-    // private
+    <div id="method-Ext.layout.BorderLayout.Region-slideOut"></div>/**
+     * If this Region is {@link #floatable}, this method slides this Region into full visibility <i>over the top
+     * of the center Region</i> where it floats until either {@link #slideIn} is called, or other regions of the layout
+     * are clicked, or the mouse exits the Region.
+     */
     slideOut : function(){
         if(this.isSlid || this.el.hasActiveFx()){
             return;
@@ -756,7 +756,10 @@ Ext.layout.BorderLayout.Region.prototype = {
         }
     },
 
-    // private
+    <div id="method-Ext.layout.BorderLayout.Region-slideIn"></div>/**
+     * If this Region is {@link #floatable}, and this Region has been slid into floating visibility, then this method slides
+     * this region back into its collapsed state.
+     */
     slideIn : function(cb){
         if(!this.isSlid || this.el.hasActiveFx()){
             Ext.callback(cb);

@@ -15,12 +15,6 @@
  * @xtype field
  */
 Ext.form.Field = Ext.extend(Ext.BoxComponent,  {
-    <div id="cfg-Ext.form.Field-fieldLabel"></div>/**
-     * @cfg {String} fieldLabel The label text to display next to this field (defaults to '')
-     * <p><b>A Field's label is not by default rendered as part of the Field's structure.
-     * The label is rendered by the {@link Ext.layout.FormLayout form layout} layout manager
-     * of the {@link Ext.form.Container Container} to which the Field is added.</b></p>
-     */
     <div id="cfg-Ext.form.Field-inputType"></div>/**
      * @cfg {String} inputType The type attribute for input fields -- e.g. radio, text, password, file (defaults
      * to "text"). The types "file" and "password" must be used to render those field types currently -- there are
@@ -36,6 +30,8 @@ Ext.form.Field = Ext.extend(Ext.BoxComponent,  {
      */
     <div id="cfg-Ext.form.Field-name"></div>/**
      * @cfg {String} name The field's HTML name attribute (defaults to "").
+     * <b>Note</b>: this property must be set if this field is to be automatically included with
+     * {@link Ext.form.BasicForm#submit form submit()}.
      */
     <div id="cfg-Ext.form.Field-cls"></div>/**
      * @cfg {String} cls A custom CSS class to apply to the field's underlying element (defaults to "").
@@ -99,8 +95,13 @@ side          Add an error icon to the right of the field with a popup on hover
      */
     msgFx : 'normal',
     <div id="cfg-Ext.form.Field-readOnly"></div>/**
-     * @cfg {Boolean} readOnly True to mark the field as readOnly in HTML (defaults to false) -- Note: this only
-     * sets the element's readOnly DOM attribute.
+     * @cfg {Boolean} readOnly <tt>true</tt> to mark the field as readOnly in HTML
+     * (defaults to <tt>false</tt>).
+     * <br><p><b>Note</b>: this only sets the element's readOnly DOM attribute.
+     * Setting <code>readOnly=true</code>, for example, will not disable triggering a
+     * ComboBox or DateField; it gives you the option of forcing the user to choose
+     * via the trigger without typing in the text box. To hide the trigger use
+     * <code>{@link Ext.form.TriggerField#hideTrigger hideTrigger}</code>.</p>
      */
     readOnly : false,
     <div id="cfg-Ext.form.Field-disabled"></div>/**
@@ -116,8 +117,8 @@ side          Add an error icon to the right of the field with a popup on hover
     // private
     hasFocus : false,
 
-	// private
-	initComponent : function(){
+    // private
+    initComponent : function(){
         Ext.form.Field.superclass.initComponent.call(this);
         this.addEvents(
             <div id="event-Ext.form.Field-focus"></div>/**
@@ -196,7 +197,7 @@ var form = new Ext.form.FormPanel({
      * @return {String} name The field {@link Ext.form.Field#name name} or {@link Ext.form.ComboBox#hiddenName hiddenName}  
      */
     getName: function(){
-         return this.rendered && this.el.dom.name ? this.el.dom.name : (this.hiddenName || '');
+        return this.rendered && this.el.dom.name ? this.el.dom.name : this.name || this.id || '';
     },
 
     // private
@@ -243,13 +244,19 @@ var form = new Ext.form.FormPanel({
         }else if(!Ext.isEmpty(this.el.dom.value) && this.el.dom.value != this.emptyText){
             this.setValue(this.el.dom.value);
         }
-        // reference to original value for reset
+        <div id="prop-Ext.form.Field-originalValue"></div>/**
+         * The original value of the field as configured in the {@link #value} configuration, or
+         * as loaded by the last form load operation if the form's {@link Ext.form.BasicForm#trackResetOnLoad trackResetOnLoad}
+         * setting is <code>true</code>.
+         * @type mixed
+         * @property originalValue
+         */
         this.originalValue = this.getValue();
     },
 
     <div id="method-Ext.form.Field-isDirty"></div>/**
-     * <p>Returns true if the value of this Field has been changed from its original value,
-     * and is not disabled.</p>
+     * <p>Returns true if the value of this Field has been changed from its original value.
+     * Will return false if the field is disabled or has not been rendered yet.</p>
      * <p>Note that if the owning {@link Ext.form.BasicForm form} was configured with
      * {@link Ext.form.BasicForm}.{@link Ext.form.BasicForm#trackResetOnLoad trackResetOnLoad}
      * then the <i>original value</i> is updated when the values are loaded by
@@ -258,7 +265,7 @@ var form = new Ext.form.FormPanel({
      * is not disabled), false otherwise.
      */
     isDirty : function() {
-        if(this.disabled) {
+        if(this.disabled || !this.rendered) {
             return false;
         }
         return String(this.getValue()) !== String(this.originalValue);
@@ -289,8 +296,8 @@ var form = new Ext.form.FormPanel({
 
     // private
     initEvents : function(){
-    	this.mon(this.el, Ext.isIE || Ext.isSafari3 || Ext.isChrome ? "keydown" : "keypress", this.fireKey,  this);
-		this.mon(this.el, 'focus', this.onFocus, this);
+        this.mon(this.el, Ext.EventManager.useKeydown ? "keydown" : "keypress", this.fireKey,  this);
+        this.mon(this.el, 'focus', this.onFocus, this);
 
         // fix weird FF/Win editor issue when changing OS window focus
         var o = this.inEditor && Ext.isWindows && Ext.isGecko ? {buffer:10} : null;
@@ -464,7 +471,7 @@ var form = new Ext.form.FormPanel({
      * @return {Mixed} value The field value that is set
      */
     setRawValue : function(v){
-        return this.el.dom.value = (v === null || v === undefined ? '' : v);
+        return (this.el.dom.value = (Ext.isEmpty(v) ? '' : v));
     },
 
     <div id="method-Ext.form.Field-setValue"></div>/**
@@ -475,14 +482,14 @@ var form = new Ext.form.FormPanel({
     setValue : function(v){
         this.value = v;
         if(this.rendered){
-            this.el.dom.value = (v === null || v === undefined ? '' : v);
+            this.el.dom.value = (Ext.isEmpty(v) ? '' : v);
             this.validate();
         }
         return this;
     },
 
     // private, does not work for all fields
-    append :function(v){
+    append : function(v){
          this.setValue([this.getValue(), v].join(''));
     },
 
@@ -500,26 +507,8 @@ var form = new Ext.form.FormPanel({
 
     // private
     adjustWidth : function(tag, w){
-        tag = tag.toLowerCase();
-        if(typeof w == 'number' && !Ext.isWebKit && !this.normalWidth){
-            if(Ext.isIE && (tag == 'input' || tag == 'textarea')){
-                if(tag == 'input' && !Ext.isStrict){
-                    return this.inEditor ? w : w - 3;
-                }
-                if(tag == 'input' && Ext.isStrict){
-                    return w - (Ext.isIE6 ? 4 : 1);
-                }
-                if(tag == 'textarea' && Ext.isStrict){
-                    return w-2;
-                }
-            }else if(Ext.isOpera && Ext.isStrict){
-                if(tag == 'input'){
-                    return w + 2;
-                }
-                if(tag == 'textarea'){
-                    return w-2;
-                }
-            }
+        if(typeof w == 'number' && (Ext.isIE && (Ext.isIE6 || !Ext.isStrict)) && /input|textarea/i.test(tag) && !this.inEditor){
+            return w - 3;
         }
         return w;
     }

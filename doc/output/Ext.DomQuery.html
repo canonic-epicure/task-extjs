@@ -15,7 +15,46 @@ All selectors, attribute filters and pseudos below can be combined infinitely in
     <li> <b>E ~ F</b> all elements with the tag F that are preceded by a sibling element with the tag E</li>
 </ul>
 <h4>Attribute Selectors:</h4>
-<p>The use of<br><br><i>This class is a singleton and cannot be created directly.</i></div><div class="hr"></div><a id="Ext.DomQuery-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.DomQuery-matchers"></a><b><a href="source/DomQuery.html#prop-Ext.DomQuery-matchers">matchers</a></b> : Object<div class="mdesc">Collection of matching regular expressions and code snippets.</div></td><td class="msource">DomQuery</td></tr><tr class="property-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.DomQuery-pseudos"></a><b><a href="source/DomQuery.html#prop-Ext.DomQuery-pseudos">pseudos</a></b> : Object<div class="mdesc"><div class="short">Collection of "pseudo class" processors. Each processor is passed the current nodeset (array)&#13;
+<p>The use of &#64; and quotes are optional. For example, div[&#64;foo='bar'] is also a valid attribute selector.</p>
+<ul class="list">
+    <li> <b>E[foo]</b> has an attribute "foo"</li>
+    <li> <b>E[foo=bar]</b> has an attribute "foo" that equals "bar"</li>
+    <li> <b>E[foo^=bar]</b> has an attribute "foo" that starts with "bar"</li>
+    <li> <b>E[foo$=bar]</b> has an attribute "foo" that ends with "bar"</li>
+    <li> <b>E[foo*=bar]</b> has an attribute "foo" that contains the substring "bar"</li>
+    <li> <b>E[foo%=2]</b> has an attribute "foo" that is evenly divisible by 2</li>
+    <li> <b>E[foo!=bar]</b> has an attribute "foo" that does not equal "bar"</li>
+</ul>
+<h4>Pseudo Classes:</h4>
+<ul class="list">
+    <li> <b>E:first-child</b> E is the first child of its parent</li>
+    <li> <b>E:last-child</b> E is the last child of its parent</li>
+    <li> <b>E:nth-child(<i>n</i>)</b> E is the <i>n</i>th child of its parent (1 based as per the spec)</li>
+    <li> <b>E:nth-child(odd)</b> E is an odd child of its parent</li>
+    <li> <b>E:nth-child(even)</b> E is an even child of its parent</li>
+    <li> <b>E:only-child</b> E is the only child of its parent</li>
+    <li> <b>E:checked</b> E is an element that is has a checked attribute that is true (e.g. a radio or checkbox) </li>
+    <li> <b>E:first</b> the first E in the resultset</li>
+    <li> <b>E:last</b> the last E in the resultset</li>
+    <li> <b>E:nth(<i>n</i>)</b> the <i>n</i>th E in the resultset (1 based)</li>
+    <li> <b>E:odd</b> shortcut for :nth-child(odd)</li>
+    <li> <b>E:even</b> shortcut for :nth-child(even)</li>
+    <li> <b>E:contains(foo)</b> E's innerHTML contains the substring "foo"</li>
+    <li> <b>E:nodeValue(foo)</b> E contains a textNode with a nodeValue that equals "foo"</li>
+    <li> <b>E:not(S)</b> an E element that does not match simple selector S</li>
+    <li> <b>E:has(S)</b> an E element that has a descendent that matches simple selector S</li>
+    <li> <b>E:next(S)</b> an E element whose next sibling matches simple selector S</li>
+    <li> <b>E:prev(S)</b> an E element whose previous sibling matches simple selector S</li>
+</ul>
+<h4>CSS Value Selectors:</h4>
+<ul class="list">
+    <li> <b>E{display=none}</b> css value "display" that equals "none"</li>
+    <li> <b>E{display^=none}</b> css value "display" that starts with "none"</li>
+    <li> <b>E{display$=none}</b> css value "display" that ends with "none"</li>
+    <li> <b>E{display*=none}</b> css value "display" that contains the substring "none"</li>
+    <li> <b>E{display%=2}</b> css value "display" that is evenly divisible by 2</li>
+    <li> <b>E{display!=none}</b> css value "display" that does not equal "none"</li>
+</ul><br><br><i>This class is a singleton and cannot be created directly.</i></div><div class="hr"></div><a id="Ext.DomQuery-props"></a><h2>Public Properties</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Property</th><th class="msource-header">Defined By</th></tr><tr class="property-row  "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.DomQuery-matchers"></a><b><a href="source/DomQuery.html#prop-Ext.DomQuery-matchers">matchers</a></b> : Object<div class="mdesc">Collection of matching regular expressions and code snippets.</div></td><td class="msource">DomQuery</td></tr><tr class="property-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.DomQuery-pseudos"></a><b><a href="source/DomQuery.html#prop-Ext.DomQuery-pseudos">pseudos</a></b> : Object<div class="mdesc"><div class="short">Collection of "pseudo class" processors. Each processor is passed the current nodeset (array)&#13;
 and the argument (if a...</div><div class="long">Collection of "pseudo class" processors. Each processor is passed the current nodeset (array)
 and the argument (if any) supplied in the selector.</div></div></td><td class="msource">DomQuery</td></tr></tbody></table><a id="Ext.DomQuery-methods"></a><h2>Public Methods</h2><table cellspacing="0" class="member-table"><tbody><tr><th colspan="2" class="sig-header">Method</th><th class="msource-header">Defined By</th></tr><tr class="method-row expandable "><td class="micon"><a href="#expand" class="exi">&nbsp;</a></td><td class="sig"><a id="Ext.DomQuery-compile"></a><b><a href="source/DomQuery.html#method-Ext.DomQuery-compile">compile</a></b>(&nbsp;<code>String&nbsp;selector</code>,&nbsp;<span title="Optional" class="optional">[<code>String&nbsp;type</code>]</span>&nbsp;)
     :

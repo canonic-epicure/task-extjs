@@ -273,14 +273,12 @@ Ext.extend(Ext.SplitBar, Ext.util.Observable, {
      * @param {Boolean} removeEl True to remove the element
      */
     destroy : function(removeEl){
-        if(this.shim){
-            this.shim.remove();
-        }
+		Ext.destroy(this.shim, Ext.get(this.proxy));
         this.dd.unreg();
-        Ext.destroy(Ext.get(this.proxy));
         if(removeEl){
             this.el.remove();
         }
+		this.purgeListeners();
     }
 });
 
@@ -424,7 +422,7 @@ Ext.SplitBar.LEFT = 1;
  */
 Ext.SplitBar.RIGHT = 2;
 
-<div id="prop-Ext.SplitBar.AbsoluteLayoutAdapter-TOP"></div>/**
+<div id="prop-Ext.SplitBar.AbsoluteLayoutAdapter-TOP"></div>/**
  * Placement constant - The resizing element is positioned above the splitter element
  * @static
  * @type Number

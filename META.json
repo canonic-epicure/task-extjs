@@ -1,0 +1,51 @@
+{
+   "resources" : {
+      "license" : "http://opensource.org/licenses/gpl-3.0.html"
+   },
+   "meta-spec" : {
+      "version" : "1.4",
+      "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
+   },
+   "generated_by" : "Module::Build version 0.3201",
+   "version" : "3.02",
+   "name" : "Task.ExtJS",
+   "author" : [
+      "SamuraiJack"
+   ],
+   "license" : "gpl3",
+   "provides" : {
+      "Task.ExtJS.Debug.All" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Debug/All.js"
+      },
+      "Task.ExtJS.Adapter.jQuery" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Adapter/jQuery.js"
+      },
+      "Task.ExtJS.Debug.Core" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Debug/Core.js"
+      },
+      "Task.ExtJS.Adapter.Prototype" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Adapter/Prototype.js"
+      },
+      "Task.ExtJS.Adapter.Ext" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Adapter/Ext.js"
+      },
+      "Task.ExtJS.Core" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Core.js"
+      },
+      "Task.ExtJS.All" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/All.js"
+      },
+      "Task.ExtJS.Adapter.YUI" : {
+         "version" : null,
+         "file" : "lib/Task/ExtJS/Adapter/YUI.js"
+      }
+   },
+   "abstract" : "ExtJS framework"
+}

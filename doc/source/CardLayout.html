@@ -82,12 +82,20 @@ Ext.layout.CardLayout = Ext.extend(Ext.layout.FitLayout, {
     
     <div id="cfg-Ext.layout.CardLayout-layoutOnCardChange"></div>/**
      * @cfg {Boolean} layoutOnCardChange
-     * True to force a layout of the active item when the active card is changed.
+     * True to force a layout of the active item when the active card is changed. Defaults to false.
      */
     layoutOnCardChange : false,
 
+    <div id="cfg-Ext.layout.CardLayout-renderHidden"></div>/**
+     * @cfg {Boolean} renderHidden @hide
+     */
     // private
     renderHidden : true,
+    
+    constructor: function(config){
+        Ext.layout.CardLayout.superclass.constructor.call(this, config);
+        this.forceLayout = (this.deferredRender === false);
+    },
 
     <div id="method-Ext.layout.CardLayout-setActiveItem"></div>/**
      * Sets the active (visible) item in the layout.

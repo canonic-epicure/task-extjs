@@ -8,14 +8,23 @@
     <pre class="prettyprint lang-js"><div id="cls-Ext.Panel"></div>/**
  * @class Ext.Panel
  * @extends Ext.Container
- * <p>Panel is a container that has specific functionality and structural components that make it the perfect building
- * block for application-oriented user interfaces.</p>
- * <p>A Panel may contain {@link #bbar bottom} and {@link #tbar top} toolbars, along with separate header, footer and
- * body sections (see {@link #frame} for additional information).</p>
- * <p>Panel also provides built-in {@link #collapsible expandable and collapsible behavior}, along with a variety of
- * {@link #tools prebuilt tool buttons} that can be wired up to provide other customized behavior.  Panels can be
- * easily dropped into any {@link Ext.Container Container} or layout, and the layout and rendering pipeline is
- * {@link Ext.Container#add completely managed by the framework}.</p>
+ * <p>Panel is a container that has specific functionality and structural components that make
+ * it the perfect building block for application-oriented user interfaces.</p>
+ * <p>Panels are, by virtue of their inheritance from {@link Ext.Container}, capable
+ * of being configured with a {@link Ext.Container#layout layout}, and containing child Components.</p>
+ * <p>When either specifying child {@link Ext.Component#items items} of a Panel, or dynamically {@link Ext.Container#add adding} Components
+ * to a Panel, remember to consider how you wish the Panel to arrange those child elements, and whether
+ * those child elements need to be sized using one of Ext's built-in <tt><b>{@link Ext.Container#layout layout}</b></tt> schemes. By
+ * default, Panels use the {@link Ext.layout.ContainerLayout ContainerLayout} scheme. This simply renders
+ * child components, appending them one after the other inside the Container, and <b>does not apply any sizing</b>
+ * at all.</p>
+ * <p>A Panel may also contain {@link #bbar bottom} and {@link #tbar top} toolbars, along with separate
+ * {@link #header}, {@link #footer} and {@link #body} sections (see {@link #frame} for additional
+ * information).</p>
+ * <p>Panel also provides built-in {@link #collapsible expandable and collapsible behavior}, along with
+ * a variety of {@link #tools prebuilt tool buttons} that can be wired up to provide other customized
+ * behavior.  Panels can be easily dropped into any {@link Ext.Container Container} or layout, and the
+ * layout and rendering pipeline is {@link Ext.Container#add completely managed by the framework}.</p>
  * @constructor
  * @param {Object} config The config object
  * @xtype panel
@@ -41,43 +50,86 @@ Ext.Panel = Ext.extend(Ext.Container, {
      * @type Ext.Element
      * @property body
      */
+    <div id="prop-Ext.Panel-bwrap"></div>/**
+     * The Panel's bwrap {@link Ext.Element Element} used to contain other Panel elements
+     * (tbar, body, bbar, footer). See {@link #bodyCfg}. Read-only.
+     * @type Ext.Element
+     * @property bwrap
+     */
+    <div id="prop-Ext.Panel-collapsed"></div>/**
+     * True if this panel is collapsed. Read-only.
+     * @type Boolean
+     * @property collapsed
+     */
     <div id="cfg-Ext.Panel-bodyCfg"></div>/**
      * @cfg {Object} bodyCfg
-     * <p>A {@link Ext.DomHelper DomHelper} configuration object specifying the element structure
-     * of this Panel's {@link #body} Element.</p>
-     * <p>This may be used to force the body Element to use a different form of markup than is created
-     * automatically. An example of this might be to {@link Ext.Element#createChild create a child}
-     * Panel containing custom content, such as a header, or forcing centering of all Panel
-     * content by having the body be a &lt;center&gt; element:</p><code><pre>
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object may be specified for any
+     * Panel Element.</p>
+     * <p>By default, the Default element in the table below will be used for the html markup to
+     * create a child element with the commensurate Default class name (<tt>baseCls</tt> will be
+     * replaced by <tt>{@link #baseCls}</tt>):</p>
+     * <pre>
+     * Panel      Default  Default             Custom      Additional       Additional
+     * Element    element  class               element     class            style
+     * ========   ==========================   =========   ==============   ===========
+     * {@link #header}     div      {@link #baseCls}+'-header'   {@link #headerCfg}   headerCssClass   headerStyle
+     * {@link #bwrap}      div      {@link #baseCls}+'-bwrap'     {@link #bwrapCfg}    bwrapCssClass    bwrapStyle
+     * + tbar     div      {@link #baseCls}+'-tbar'       {@link #tbarCfg}     tbarCssClass     tbarStyle
+     * + {@link #body}     div      {@link #baseCls}+'-body'       {@link #bodyCfg}     {@link #bodyCssClass}     {@link #bodyStyle}
+     * + bbar     div      {@link #baseCls}+'-bbar'       {@link #bbarCfg}     bbarCssClass     bbarStyle
+     * + {@link #footer}   div      {@link #baseCls}+'-footer'   {@link #footerCfg}   footerCssClass   footerStyle
+     * </pre>
+     * <p>Configuring a Custom element may be used, for example, to force the {@link #body} Element
+     * to use a different form of markup than is created by default. An example of this might be
+     * to {@link Ext.Element#createChild create a child} Panel containing a custom content, such as
+     * a header, or forcing centering of all Panel content by having the body be a &lt;center&gt;
+     * element:</p>
+     * <pre><code>
 new Ext.Panel({
-    title: 'New Message',
-    collapsible: true,
+    title: 'Message Title',
     renderTo: Ext.getBody(),
-    width: 400,
+    width: 200, height: 130,
     <b>bodyCfg</b>: {
         tag: 'center',
-        cls: 'x-panel-body'
+        cls: 'x-panel-body',  // Default class not applied if Custom element specified
+        html: 'Message'
     },
-    items: [{
-        border: false,
-        header: false,
-        <b>bodyCfg</b>: {tag: 'h2', html: 'Message'}
-    }, {
-        xtype: 'textarea',
-        style: {
-            width: '95%',
-            marginBottom: '10px'
-        }
+    footerCfg: {
+        tag: 'h2',
+        cls: 'x-panel-footer'        // same as the Default class
+        html: 'footer html'
     },
-        new Ext.Button({
-            text: 'Send',
-            minWidth: '100',
-            style: {
-                marginBottom: '10px'
-            }
-        })
-    ]
-});</pre></code>
+    footerCssClass: 'custom-footer', // additional css class, see {@link Ext.element#addClass addClass}
+    footerStyle:    'background-color:red' // see {@link #bodyStyle}
+});
+     * </code></pre>
+     * <p>The example above also explicitly creates a <tt>{@link #footer}</tt> with custom markup and
+     * styling applied.</p>
+     */
+    <div id="cfg-Ext.Panel-headerCfg"></div>/**
+     * @cfg {Object} headerCfg
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object specifying the element structure
+     * of this Panel's {@link #header} Element.  See <tt>{@link #bodyCfg}</tt> also.</p>
+     */
+    <div id="cfg-Ext.Panel-bwrapCfg"></div>/**
+     * @cfg {Object} bwrapCfg
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object specifying the element structure
+     * of this Panel's {@link #bwrap} Element.  See <tt>{@link #bodyCfg}</tt> also.</p>
+     */
+    <div id="cfg-Ext.Panel-tbarCfg"></div>/**
+     * @cfg {Object} tbarCfg
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object specifying the element structure
+     * of this Panel's {@link #tbar} Element.  See <tt>{@link #bodyCfg}</tt> also.</p>
+     */
+    <div id="cfg-Ext.Panel-bbarCfg"></div>/**
+     * @cfg {Object} bbarCfg
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object specifying the element structure
+     * of this Panel's {@link #bbar} Element.  See <tt>{@link #bodyCfg}</tt> also.</p>
+     */
+    <div id="cfg-Ext.Panel-footerCfg"></div>/**
+     * @cfg {Object} footerCfg
+     * <p>A {@link Ext.DomHelper DomHelper} element specification object specifying the element structure
+     * of this Panel's {@link #footer} Element.  See <tt>{@link #bodyCfg}</tt> also.</p>
      */
     <div id="cfg-Ext.Panel-closable"></div>/**
      * @cfg {Boolean} closable
@@ -85,19 +137,9 @@ new Ext.Panel({
      * {@link Ext.Window}) or a Panel Class within an {@link Ext.TabPanel}.  Specify <tt>true</tt>
      * to enable closing in such situations. Defaults to <tt>false</tt>.
      */
-    <div id="cfg-Ext.Panel-headerCfg"></div>/**
-     * @cfg {Object} headerCfg
-     * <p>A {@link Ext.DomHelper DomHelper} configuration object specifying the element structure
-     * of this Panel's {@link #header} Element.</p>
-     */
-    <div id="cfg-Ext.Panel-footerCfg"></div>/**
-     * @cfg {Object} footerCfg
-     * <p>A {@link Ext.DomHelper DomHelper} configuration object specifying the element structure
-     * of this Panel's {@link #footer} Element.</p>
-     */
     <div id="prop-Ext.Panel-footer"></div>/**
      * The Panel's footer {@link Ext.Element Element}. Read-only.
-     * <p>This Element is used to house the Panel's {@link #buttons}.</p>
+     * <p>This Element is used to house the Panel's <tt>{@link #buttons}</tt> or <tt>{@link #fbar}</tt>.</p>
      * <br><p><b>Note</b>: see the Note for <tt>{@link Ext.Component#el el} also.</p>
      * @type Ext.Element
      * @property footer
@@ -126,7 +168,7 @@ new Ext.Panel({
      * <p>The top toolbar of the panel. This can be a {@link Ext.Toolbar} object, a toolbar config, or an array of
      * buttons/button configs to be added to the toolbar.  Note that this is not available as a property after render.
      * To access the top toolbar after render, use {@link #getTopToolbar}.</p>
-     * <p><b>Note:</b> Although a Toolbar may contain Field components, these will <b>not<b> be updated by a load
+     * <p><b>Note:</b> Although a Toolbar may contain Field components, these will <b>not</b> be updated by a load
      * of an ancestor FormPanel. A Panel's toolbars are not part of the standard Container->Component hierarchy, and
      * so are not scanned to collect form items. However, the values <b>will</b> be submitted because form
      * submission parameters are collected from the DOM tree.</p>
@@ -141,30 +183,67 @@ new Ext.Panel({
      * so are not scanned to collect form items. However, the values <b>will</b> be submitted because form
      * submission parameters are collected from the DOM tree.</p>
      */
+    <div id="cfg-Ext.Panel-fbar"></div>/** @cfg {Object/Array} fbar
+     * <p>A {@link Ext.Toolbar Toolbar} object, a Toolbar config, or an array of
+     * {@link Ext.Button Button}s/{@link Ext.Button Button} configs, describing a {@link Ext.Toolbar Toolbar} to be rendered into this Panel's footer element.</p>
+     * <p>After render, the <code>fbar</code> property will be an {@link Ext.Toolbar Toolbar} instance.</p>
+     * <p>If <tt>{@link #buttons}</tt> are specified, they will supersede the <tt>fbar</tt> configuration property.</p>
+     * The Panel's <tt>{@link #buttonAlign}</tt> configuration affects the layout of these items, for example:
+     * <pre><code>
+var w = new Ext.Window({
+    height: 250,
+    width: 500,
+    bbar: new Ext.Toolbar({
+        items: [{
+            text: 'bbar Left'
+        },'->',{
+            text: 'bbar Right'
+        }]
+    }),
+    {@link #buttonAlign}: 'left', // anything but 'center' or 'right' and you can use "-", and "->"
+                                  // to control the alignment of fbar items
+    fbar: [{
+        text: 'fbar Left'
+    },'->',{
+        text: 'fbar Right'
+    }]
+}).show();
+     * </code></pre>
+     * <p><b>Note:</b> Although a Toolbar may contain Field components, these will <b>not<b> be updated by a load
+     * of an ancestor FormPanel. A Panel's toolbars are not part of the standard Container->Component hierarchy, and
+     * so are not scanned to collect form items. However, the values <b>will</b> be submitted because form
+     * submission parameters are collected from the DOM tree.</p>
+     */
     <div id="cfg-Ext.Panel-header"></div>/**
      * @cfg {Boolean} header
-     * True to create the Panel's header element explicitly, false to skip creating it.  By default, when header is not
-     * specified, if a {@link #title} is set the header will be created automatically, otherwise it will not.  If
-     * a title is set but header is explicitly set to false, the header will not be rendered.
+     * <tt>true</tt> to create the Panel's header element explicitly, <tt>false</tt> to skip creating
+     * it.  If a <tt>{@link #title}</tt> is set the header will be created automatically, otherwise it will not.
+     * If a <tt>{@link #title}</tt> is set but <tt>header</tt> is explicitly set to <tt>false</tt>, the header
+     * will not be rendered.
      */
     <div id="cfg-Ext.Panel-footer"></div>/**
      * @cfg {Boolean} footer
-     * True to create the footer element explicitly, false to skip creating it.  By default, when footer is not
-     * specified, if one or more {@link #buttons} have been added to the panel the footer will be created automatically,
-     * otherwise it will not.
+     * <tt>true</tt> to create the footer element explicitly, false to skip creating it. The footer
+     * will be created automatically if <tt>{@link #buttons}</tt> or a <tt>{@link #fbar}</tt> have
+     * been configured.  See <tt>{@link #bodyCfg}</tt> for an example.
      */
     <div id="cfg-Ext.Panel-title"></div>/**
      * @cfg {String} title
-     * The title text to be used as innerHTML (html tags are accepted) to display in the panel header (defaults to '').
-     * When a title is specified the header element will automatically be created and displayed unless {@link #header}
-     * is explicitly set to false.  If you do not want to specify a title at config time, but you may want one later,
-     * you must either specify a non-empty title (a blank space ' ' will do) or header:true so that the container
+     * The title text to be used as innerHTML (html tags are accepted) to display in the panel
+     * <tt>{@link #header}</tt> (defaults to ''). When a <tt>title</tt> is specified the
+     * <tt>{@link #header}</tt> element will automatically be created and displayed unless
+     * {@link #header} is explicitly set to <tt>false</tt>.  If you do not want to specify a
+     * <tt>title</tt> at config time, but you may want one later, you must either specify a non-empty
+     * <tt>title</tt> (a blank space ' ' will do) or <tt>header:true</tt> so that the container
      * element will get created.
      */
     <div id="cfg-Ext.Panel-buttons"></div>/**
      * @cfg {Array} buttons
-     * An array of {@link Ext.Button}s or {@link Ext.Button} configs used to add buttons to the footer of this panel.
-     * See also <tt>{@link #minButtonWidth}</tt>.
+     * <tt>buttons</tt> will be used as <tt>{@link Ext.Container#items items}</tt> for the toolbar in
+     * the footer (<tt>{@link #fbar}</tt>). Typically the value of this configuration property will be
+     * an array of {@link Ext.Button}s or {@link Ext.Button} configuration objects.
+     * If an item is configured with <tt>minWidth</tt> or the Panel is configured with <tt>minButtonWidth</tt>,
+     * that width will be applied to the item.
      */
     <div id="cfg-Ext.Panel-autoLoad"></div>/**
      * @cfg {Object/String/Function} autoLoad
@@ -217,23 +296,28 @@ new Ext.Panel({
      * This only applies when {@link #border} == true.  If border == true and bodyBorder == false, the border will display
      * as a 1px wide inset border, giving the entire body element an inset appearance.
      */
+    <div id="cfg-Ext.Panel-bodyCssClass"></div>/**
+     * @cfg {String/Object/Function} bodyCssClass
+     * Additional css class selector to be applied to the {@link #body} element in the format expected by
+     * {@link Ext.Element#addClass} (defaults to null). See {@link #bodyCfg}.
+     */
     <div id="cfg-Ext.Panel-bodyStyle"></div>/**
      * @cfg {String/Object/Function} bodyStyle
-     * Custom CSS styles to be applied to the body element in the format expected by {@link Ext.Element#applyStyles}
-     * (defaults to null).
+     * Custom CSS styles to be applied to the {@link #body} element in the format expected by
+     * {@link Ext.Element#applyStyles} (defaults to null). See {@link #bodyCfg}.
      */
     <div id="cfg-Ext.Panel-iconCls"></div>/**
      * @cfg {String} iconCls
      * The CSS class selector that specifies a background image to be used as the header icon (defaults to '').
      * <p>An example of specifying a custom icon class would be something like:
-     * </p><code><pre>
+     * </p><pre><code>
 // specify the property in the config for the class:
      ...
      iconCls: 'my-icon'
 
 // css class that specifies background image to be used as the icon image:
 .my-icon { background-image: url(../images/my-icon.gif) 0 6px no-repeat !important; }
-</pre></code>
+</code></pre>
      */
     <div id="cfg-Ext.Panel-collapsible"></div>/**
      * @cfg {Boolean} collapsible
@@ -350,7 +434,7 @@ var win = new Ext.Window({
      */
     <div id="cfg-Ext.Panel-hideCollapseTool"></div>/**
      * @cfg {Boolean} hideCollapseTool
-     * <tt>true</tt> to hide the expand/collapse toggle button when <tt>{@link #collapsible} = true</tt>,
+     * <tt>true</tt> to hide the expand/collapse toggle button when <code>{@link #collapsible} == true</code>,
      * <tt>false</tt> to display it (defaults to <tt>false</tt>).
      */
     <div id="cfg-Ext.Panel-titleCollapse"></div>/**
@@ -442,7 +526,7 @@ var win = new Ext.Window({
      * in this config instead of <tt>true</tt>. Ext.Panel.DD is an internal, undocumented class which
      * moves a proxy Element around in place of the Panel's element, but provides no other behaviour
      * during dragging or on drop. It is a subclass of {@link Ext.dd.DragSource}, so behaviour may be
-     * added by implementing the interface methods of {@link Ext.dd.DragDrop} eg:
+     * added by implementing the interface methods of {@link Ext.dd.DragDrop} e.g.:
      * <pre><code>
 new Ext.Panel({
     title: 'Drag me',
@@ -540,25 +624,25 @@ new Ext.Panel({
      * when it is disabled, but masking the panel can provide an additional visual cue that the panel is
      * disabled.
      */
-    maskDisabled: true,
+    maskDisabled : true,
     <div id="cfg-Ext.Panel-animCollapse"></div>/**
      * @cfg {Boolean} animCollapse
      * <tt>true</tt> to animate the transition when the panel is collapsed, <tt>false</tt> to skip the
      * animation (defaults to <tt>true</tt> if the {@link Ext.Fx} class is available, otherwise <tt>false</tt>).
      */
-    animCollapse: Ext.enableFx,
+    animCollapse : Ext.enableFx,
     <div id="cfg-Ext.Panel-headerAsText"></div>/**
      * @cfg {Boolean} headerAsText
      * <tt>true</tt> to display the panel <tt>{@link #title}</tt> in the <tt>{@link #header}</tt>,
      * <tt>false</tt> to hide it (defaults to <tt>true</tt>).
      */
-    headerAsText: true,
+    headerAsText : true,
     <div id="cfg-Ext.Panel-buttonAlign"></div>/**
      * @cfg {String} buttonAlign
      * The alignment of any {@link #buttons} added to this panel.  Valid values are <tt>'right'</tt>,
      * <tt>'left'</tt> and <tt>'center'</tt> (defaults to <tt>'right'</tt>).
      */
-    buttonAlign: 'right',
+    buttonAlign : 'right',
     <div id="cfg-Ext.Panel-collapsed"></div>/**
      * @cfg {Boolean} collapsed
      * <tt>true</tt> to render the panel collapsed, <tt>false</tt> to render it expanded (defaults to
@@ -570,12 +654,12 @@ new Ext.Panel({
      * <tt>true</tt> to make sure the collapse/expand toggle button always renders first (to the left of)
      * any other tools in the panel's title bar, <tt>false</tt> to render it last (defaults to <tt>true</tt>).
      */
-    collapseFirst: true,
+    collapseFirst : true,
     <div id="cfg-Ext.Panel-minButtonWidth"></div>/**
      * @cfg {Number} minButtonWidth
      * Minimum width in pixels of all {@link #buttons} in this panel (defaults to <tt>75</tt>)
      */
-    minButtonWidth:75,
+    minButtonWidth : 75,
     <div id="cfg-Ext.Panel-unstyled"></div>/**
      * @cfg {Boolean} unstyled
      * Overrides the <tt>{@link #baseCls}</tt> setting to <tt>{@link #baseCls} = 'x-plain'</tt> which renders
@@ -597,13 +681,14 @@ new Ext.Panel({
      * Defaults to '<tt>body</tt>'.
      */
     elements : 'body',
-	<div id="cfg-Ext.Panel-resetBodyCss"></div>/**
-	 * @cfg {Boolean} resetBodyCss
-	 * Defaults to <tt>false</tt>.  When set to <tt>true</tt>, an extra css class <tt>'x-panel-normal'</tt>
-	 * will be added the the panel's element which will reset any body html to styles suggested by the W3C
-	 * (see http://www.w3.org/TR/CSS21/sample.html).
-	 */
-	resetBodyCss: false,
+    <div id="cfg-Ext.Panel-preventBodyReset"></div>/**
+     * @cfg {Boolean} preventBodyReset
+     * Defaults to <tt>false</tt>.  When set to <tt>true</tt>, an extra css class <tt>'x-panel-normal'</tt>
+     * will be added to the panel's element, effectively applying css styles suggested by the W3C
+     * (see http://www.w3.org/TR/CSS21/sample.html) to the Panel's <b>body</b> element (not the header,
+     * footer, etc.).
+     */
+    preventBodyReset : false,
 
     // protected - these could be used to customize the behavior of the window,
     // but changing them would not be useful without further mofifications and
@@ -611,17 +696,17 @@ new Ext.Panel({
     toolTarget : 'header',
     collapseEl : 'bwrap',
     slideAnchor : 't',
-    disabledClass: '',
+    disabledClass : '',
 
     // private, notify box this class will handle heights
-    deferHeight: true,
+    deferHeight : true,
     // private
     expandDefaults: {
-        duration:.25
+        duration : 0.25
     },
     // private
-    collapseDefaults: {
-        duration:.25
+    collapseDefaults : {
+        duration : 0.25
     },
 
     // private
@@ -737,11 +822,11 @@ new Ext.Panel({
         if(this.header === true){
             this.elements += ',header';
             delete this.header;
-        }else if(this.title && this.header !== false){
+        }else if(this.headerCfg || (this.title && this.header !== false)){
             this.elements += ',header';
         }
 
-        if(this.footer === true){
+        if(this.footerCfg || this.footer === true){
             this.elements += ',footer';
             delete this.footer;
         }
@@ -803,7 +888,9 @@ new Ext.Panel({
         Ext.Panel.superclass.onRender.call(this, ct, position);
         this.createClasses();
 
-        var el = this.el, d = el.dom;
+        var el = this.el,
+            d = el.dom,
+            bw;
         el.addClass(this.baseCls);
         if(d.firstChild){ // existing markup
             this.header = el.down('.'+this.headerCls);
@@ -815,9 +902,9 @@ new Ext.Panel({
             this.footer = cp.down('.'+this.footerCls);
             this.fromMarkup = true;
         }
-		if (this.resetBodyCss === true) {
-			el.addClass('x-panel-reset');
-		}
+        if (this.preventBodyReset === true) {
+            el.addClass('x-panel-reset');
+        }
         if(this.cls){
             el.addClass(this.cls);
         }
@@ -836,7 +923,7 @@ new Ext.Panel({
             this.createElement('bwrap', d);
 
             // append the mid and bottom frame to the bwrap
-            var bw = this.bwrap.dom;
+            bw = this.bwrap.dom;
             var ml = d.childNodes[1], bl = d.childNodes[2];
             bw.appendChild(ml);
             bw.appendChild(bl);
@@ -855,7 +942,7 @@ new Ext.Panel({
             this.createElement('bwrap', d);
 
             // append the mid and bottom frame to the bwrap
-            var bw = this.bwrap.dom;
+            bw = this.bwrap.dom;
             this.createElement('tbar', bw);
             this.createElement('body', bw);
             this.createElement('bbar', bw);
@@ -924,7 +1011,7 @@ new Ext.Panel({
                 });
             }
             if(this.titleCollapse && this.header){
-            	this.mon(this.header, 'click', this.toggleCollapse, this);
+                this.mon(this.header, 'click', this.toggleCollapse, this);
                 this.header.setStyle('cursor', 'pointer');
             }
         }
@@ -942,6 +1029,7 @@ new Ext.Panel({
                 toolbarCls: 'x-panel-fbar'
             });
         }
+        this.toolbars = [];
         if(this.fbar){
             this.fbar = Ext.create(this.fbar, 'toolbar');
             this.fbar.enableOverflow = false;
@@ -956,6 +1044,7 @@ new Ext.Panel({
             this.fbar.ownerCt = this;
             this.fbar.render(bct);
             bct.createChild({cls:'x-clear'});
+            this.toolbars.push(this.fbar);
         }
 
         if(this.tbar && this.topToolbar){
@@ -966,6 +1055,7 @@ new Ext.Panel({
             }
             this.topToolbar.ownerCt = this;
             this.topToolbar.render(this.tbar);
+            this.toolbars.push(this.topToolbar);
         }
         if(this.bbar && this.bottomToolbar){
             if(Ext.isArray(this.bottomToolbar)){
@@ -975,7 +1065,15 @@ new Ext.Panel({
             }
             this.bottomToolbar.ownerCt = this;
             this.bottomToolbar.render(this.bbar);
+            this.toolbars.push(this.bottomToolbar);
         }
+        Ext.each(this.toolbars, function(tb){
+            tb.on({
+                scope: this,
+                afterlayout: this.syncHeight,
+                remove: this.syncHeight
+            });
+        }, this);
     },
 
     <div id="method-Ext.Panel-setIconClass"></div>/**
@@ -1106,14 +1204,34 @@ new Ext.Panel({
     },
 
     onLayout : function(){
-        if(this.topToolbar){
-            this.topToolbar.doLayout();
+        if(this.toolbars.length > 0){
+            this.duringLayout = true;
+            Ext.each(this.toolbars, function(tb){
+                tb.doLayout();
+            });
+            delete this.duringLayout;
+            this.syncHeight();
         }
-        if(this.bottomToolbar){
-            this.bottomToolbar.doLayout();
-        }
-        if(this.fbar){
-            this.fbar.doLayout();
+    },
+
+    syncHeight : function(){
+        if(!(this.autoHeight || this.duringLayout)){
+            var last = this.lastSize;
+            if(last && !Ext.isEmpty(last.height)){
+                var old = last.height, h = this.el.getHeight();
+                if(old != 'auto' && old != h){
+                    var bd = this.body, bdh = bd.getHeight();
+                    h = Math.max(bdh + old - h, 0);
+                    if(bdh > 0 && bdh != h){
+                        bd.setHeight(h);
+                        if(Ext.isIE && h <= 0){
+                            return;
+                        }
+                        var sz = bd.getSize();
+                        this.fireEvent('bodyresize', sz.width, sz.height);
+                    }
+                }
+            }
         }
     },
 
@@ -1137,9 +1255,9 @@ new Ext.Panel({
     createToolHandler : function(t, tc, overCls, panel){
         return function(e){
             t.removeClass(overCls);
-			if(tc.stopEvent !== false){
-				e.stopEvent();
-			}
+            if(tc.stopEvent !== false){
+                e.stopEvent();
+            }
             if(tc.handler){
                 tc.handler.call(tc.scope || t, e, t, panel, tc);
             }
@@ -1148,7 +1266,7 @@ new Ext.Panel({
 
     // private
     afterRender : function(){
-        if(this.floating && !this.hidden && !this.initHidden){
+        if(this.floating && !this.hidden){
             this.el.show();
         }
         if(this.title){
@@ -1320,6 +1438,9 @@ new Ext.Panel({
     afterExpand : function(){
         this.collapsed = false;
         this.afterEffect();
+        if(this.deferLayout !== undefined){
+            this.doLayout(true);
+        }
         this.fireEvent('expand', this);
     },
 
@@ -1355,46 +1476,51 @@ new Ext.Panel({
         if(w !== undefined || h !== undefined){
             if(!this.collapsed){
                 if(typeof w == 'number'){
-					w = this.adjustBodyWidth(w - this.getFrameWidth());
+                    w = this.adjustBodyWidth(w - this.getFrameWidth());
                     if(this.tbar){
-	                    this.tbar.setWidth(w);
-	                    if(this.topToolbar){
-	                        this.topToolbar.setSize(w);
-	                    }
-	                }
-					if(this.bbar){
-	                    this.bbar.setWidth(w);
-	                    if(this.bottomToolbar){
-	                        this.bottomToolbar.setSize(w);
-	                    }
-	                }
-					if(this.fbar){
-                        var fWidth = 1, f = this.fbar;
+                        this.tbar.setWidth(w);
+                        if(this.topToolbar){
+                            this.topToolbar.setSize(w);
+                        }
+                    }
+                    if(this.bbar){
+                        this.bbar.setWidth(w);
+                        if(this.bottomToolbar){
+                            this.bottomToolbar.setSize(w);
+                        }
+                    }
+                    if(this.fbar){
+                        var f = this.fbar,
+                            fWidth = 1,
+                            strict = Ext.isStrict;
                         if(this.buttonAlign == 'left'){
-	                       fWidth = w - f.container.getFrameWidth('lr');
-                        }else if(Ext.isIE && !Ext.isIE8){
-                            //nasty hackery to get the toolbar to size automatically in IE7 strict mode.
-                            var el = f.getEl();
-                            if(Ext.isIE7 && Ext.isStrict){
-                                (function(){
-                                    f.setWidth(el.child('.x-toolbar-ct').getWidth());
-                                }).defer(1)
-                            }else{
-                                fWidth = el.getWidth();
-                            }
+                           fWidth = w - f.container.getFrameWidth('lr');
                         }else{
-                            fWidth = 'auto';
+                            //center/right alignment off in webkit
+                            if(Ext.isIE || Ext.isWebKit){
+                                //center alignment ok on webkit.
+                                //right broken in both, center on IE
+                                if(!(this.buttonAlign == 'center' && Ext.isWebKit) && (!strict || (!Ext.isIE8 && strict))){
+                                    (function(){
+                                        f.setWidth(f.getEl().child('.x-toolbar-ct').getWidth());
+                                    }).defer(1);
+                                }else{
+                                    fWidth = 'auto';
+                                }
+                            }else{
+                                fWidth = 'auto';
+                            }
                         }
                         f.setWidth(fWidth);
-	                }
+                    }
                     this.body.setWidth(w);
                 }else if(w == 'auto'){
                     this.body.setWidth(w);
                 }
 
                 if(typeof h == 'number'){
-                    h = this.adjustBodyHeight(h - this.getFrameHeight());
-				    this.body.setHeight(h);
+                    h = Math.max(0, this.adjustBodyHeight(h - this.getFrameHeight()));
+                    this.body.setHeight(h);
                 }else if(h == 'auto'){
                     this.body.setHeight(h);
                 }
@@ -1584,11 +1710,7 @@ panel.load({
                 Ext.destroy(this.buttons[b]);
             }
         }
-        Ext.destroy(
-            this.topToolbar,
-            this.bottomToolbar,
-            this.fbar
-        );
+        Ext.destroy(this.toolbars);
         Ext.Panel.superclass.beforeDestroy.call(this);
     },
 
@@ -1640,7 +1762,7 @@ panel.load({
      * @param {String} id
      * @return {Object} tool
      */
-    getTool: function(id) {
+    getTool : function(id) {
         return this.tools[id];
     }
 

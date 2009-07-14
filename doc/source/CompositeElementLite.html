@@ -137,7 +137,7 @@ Ext.CompositeElementLite.prototype = {
     clear : function(){
         this.elements = [];
     }
-}
+};
 
 Ext.CompositeElementLite.prototype.on = Ext.CompositeElementLite.prototype.addListener;
 
@@ -146,15 +146,16 @@ var fnName,
 	ElProto = Ext.Element.prototype,
 	CelProto = Ext.CompositeElementLite.prototype;
 	
-for(var fnName in ElProto){
+for(fnName in ElProto){
     if(Ext.isFunction(ElProto[fnName])){
 	    (function(fnName){ 
 		    CelProto[fnName] = CelProto[fnName] || function(){
 		    	return this.invoke(fnName, arguments);
 	    	};
     	}).call(CelProto, fnName);
+        
     }
-};
+}
 })();
 
 if(Ext.DomQuery){
