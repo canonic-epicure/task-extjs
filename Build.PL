@@ -1,13 +1,9 @@
-use Module::Build::JSAN::Installable;
+use inc::Module::JSAN::DSL;
 
-my $build = Module::Build::JSAN::Installable->new(
-	module_name    => 'Task.ExtJS',
-	create_makefile_pl => 'passthrough',
-	dist_version   => 3.02,
-	dist_author   => 'SamuraiJack',
-	dist_abstract  => 'ExtJS framework',
-	license        => 'gpl3',
-);
+name            Task.ExtJS
 
-$build->create_build_script;
+version         '3.0.0'
+author          'Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>'
+abstract        'JSAN distribuion of ExtJS framework'
 
+license         'gpl3'
