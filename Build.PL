@@ -7,3 +7,5 @@ author          'Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>'
 abstract        'JSAN distribuion of ExtJS framework'
 
 license         'gpl3'
+
+docs_markup         mmd
