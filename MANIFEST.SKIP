@@ -49,4 +49,4 @@
 ^\.git\b
 \.tar.gz$
 ^tests/lib/
-Task.ExtJS-3.01
+Task.ExtJS-*

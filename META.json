@@ -10,35 +10,10 @@
    "version" : "v3.0.0",
    "name" : "Task.ExtJS",
    "author" : [
+      "ExtJS team <services@extjs.com>",
       "Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>"
    ],
    "license" : "gpl3",
-   "provides" : {
-      "Task.ExtJS.Debug.All" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/All.js"
-      },
-      "Task.ExtJS.Adapter.jQuery" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/jQuery.js"
-      },
-      "Task.ExtJS.Adapter.Ext" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/Ext.js"
-      },
-      "Task.ExtJS.Adapter.Prototype" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/Prototype.js"
-      },
-      "Task.ExtJS.All" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/All.js"
-      },
-      "Task.ExtJS.Adapter.YUI" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/YUI.js"
-      }
-   },
    "abstract" : "JSAN distribuion of ExtJS framework",
    "configure_requires" : {
       "Module::Build" : "0.36"
