@@ -12,13 +12,13 @@ SYNOPSIS
         
         <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>
         - or -
-        <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>
-        - or -
-        <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>
+        <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/[jQuery|Prototype|YUI].js"></script>
         
         
         <script type="text/javascript" src="/jsan/Task/ExtJS/All.js"></script>
-
+        - or -
+        <script type="text/javascript" src="/jsan/Task/ExtJS/Debug/All.js"></script>
+        
 
 DESCRIPTION
 ===========
