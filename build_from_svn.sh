@@ -27,4 +27,4 @@ cp svnbuild/ext-3.1+/ext-all.js                                 lib/Task/ExtJS/A
 cp svnbuild/ext-3.1+/ext-all-debug.js                           lib/Task/ExtJS/Debug/All.js
 
 
-cp -r svnbuild/ext-3.1+/resources resources
+cp -r svnbuild/ext-3.1+/resources .
