@@ -1,7 +1,7 @@
 #!/bin/bash
 
 rm -rf svnbuild/*
-rm -rf lib/*
+rm -rf lib/*.js
 rm -rf resources/*
 
 java -jar bin/JSBuilder2.jar --projectFile /home/catalyst/Workspace/EclipseWorkspace/JavaScript/ExtJS-3.1.0/ext.jsb2 --homeDir svnbuild
