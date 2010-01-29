@@ -2,12 +2,12 @@
    "resources" : {
       "license" : "http://www.gnu.org/licenses/gpl-3.0.txt"
    },
+   "generated_by" : "Module::Build version 0.3601",
    "meta-spec" : {
       "version" : "1.4",
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "generated_by" : "Module::Build version 0.3601",
-   "version" : "v3.0.0",
+   "version" : "v3.1.0",
    "name" : "Task.ExtJS",
    "author" : [
       "ExtJS team <services@extjs.com>",
