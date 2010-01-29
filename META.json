@@ -7,7 +7,7 @@
       "version" : "1.4",
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "v3.1.0",
+   "version" : "v3.1.0_01",
    "name" : "Task.ExtJS",
    "author" : [
       "ExtJS team <services@extjs.com>",

@@ -50,3 +50,5 @@
 \.tar.gz$
 ^tests/lib/
 Task.ExtJS-*
+^MYMETA.yml$
+^svnbuild\b
