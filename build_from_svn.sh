@@ -30,3 +30,19 @@ cp svnbuild/ext-3.1+/ext-all-debug.js                           lib/Task/ExtJS/D
 cp -r svnbuild/ext-3.1+/resources .
 
 touch lib/Task/ExtJS.js
+
+touch lib/Task/ExtJS/Adapter/Ext.mmd
+touch lib/Task/ExtJS/Debug/Adapter/Ext.mmd
+
+touch lib/Task/ExtJS/Adapter/jQuery.mmd
+touch lib/Task/ExtJS/Debug/Adapter/jQuery.mmd
+
+touch lib/Task/ExtJS/Adapter/Prototype.mmd
+touch lib/Task/ExtJS/Debug/Adapter/Prototype.mmd
+
+touch lib/Task/ExtJS/Adapter/YUI.mmd
+touch lib/Task/ExtJS/Debug/Adapter/YUI.mmd
+
+
+touch lib/Task/ExtJS/All.mmd
+touch lib/Task/ExtJS/Debug/All.mmd

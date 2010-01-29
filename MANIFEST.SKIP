@@ -48,7 +48,6 @@
 \.project$
 ^\.git\b
 \.tar.gz$
-^tests/lib/
-Task.ExtJS-*
+^Task\.ExtJS-*
 ^MYMETA.yml$
 ^svnbuild\b
