@@ -5,7 +5,6 @@ blib
 .externalToolBuilders
 MANIFEST.bak
 META.json
-/sources/*
 /svnbuild/*
 /inc/*
 /Task.ExtJS-*
