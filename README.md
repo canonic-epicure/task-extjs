@@ -7,7 +7,7 @@ Task.ExtJS - ExtJS framework, packaged in JSAN standard
 SYNOPSIS
 ========
 
-        <link rel="stylesheet" type="text/css" href="/jsan/Task/ExtJS/static/css/ext-all.css">
+        <link rel="stylesheet" type="text/css" href="/jsan/Task/ExtJS/resources/css/ext-all.css">
         
         
         <script type="text/javascript" src="/jsan/Task/ExtJS/Adapter/Ext.js"></script>

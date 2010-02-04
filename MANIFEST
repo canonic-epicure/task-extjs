@@ -3,7 +3,6 @@ bin/JSB2FileFormat.txt
 bin/JSBuilder2.jar
 bin/Readme.txt
 Build.PL
-build_from_svn.sh
 doc/html/Task/ExtJS.html
 doc/html/Task/ExtJS/Adapter/Ext.html
 doc/html/Task/ExtJS/Adapter/jQuery.html
@@ -436,3 +435,4 @@ resources/images/vista/tabs/tab-sprite.gif
 resources/images/vista/toolbar/gray-bg.gif
 resources/images/vista/toolbar/tb-btn-sprite.gif
 resources/resources.jsb
+script/build_from_svn.sh

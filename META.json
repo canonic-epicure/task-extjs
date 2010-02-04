@@ -7,7 +7,7 @@
       "version" : "1.4",
       "url" : "http://module-build.sourceforge.net/META-spec-v1.4.html"
    },
-   "version" : "v3.1.0_01",
+   "version" : "v3.1.01",
    "name" : "Task.ExtJS",
    "author" : [
       "ExtJS team <services@extjs.com>",
@@ -15,51 +15,5 @@
    ],
    "license" : "gpl3",
    "static_dir" : "resources",
-   "provides" : {
-      "Task.ExtJS.Debug.Adapter.Prototype" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/Adapter/Prototype.js"
-      },
-      "Task.ExtJS.Debug.Adapter.Ext" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/Adapter/Ext.js"
-      },
-      "Task.ExtJS.All" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/All.js"
-      },
-      "Task.ExtJS.Debug.Adapter.YUI" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/Adapter/YUI.js"
-      },
-      "Task.ExtJS.Debug.All" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/All.js"
-      },
-      "Task.ExtJS.Adapter.jQuery" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/jQuery.js"
-      },
-      "Task.ExtJS.Adapter.Prototype" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/Prototype.js"
-      },
-      "Task.ExtJS.Adapter.Ext" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/Ext.js"
-      },
-      "Task.ExtJS.Debug.Adapter.jQuery" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Debug/Adapter/jQuery.js"
-      },
-      "Task.ExtJS" : {
-         "version" : "",
-         "file" : "lib/Task/ExtJS.js"
-      },
-      "Task.ExtJS.Adapter.YUI" : {
-         "version" : null,
-         "file" : "lib/Task/ExtJS/Adapter/YUI.js"
-      }
-   },
    "abstract" : "JSAN distribuion of ExtJS framework"
 }
