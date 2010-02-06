@@ -19,12 +19,16 @@
 
 <h1 id="description">DESCRIPTION</h1>
 
-<p><code>Task.ExtJS</code> is JSAN distribution, containing ExtJS framework.</p>
+<p><code>Task.ExtJS</code> is JSAN distribution, containing ExtJS framework. </p>
+
+<h1 id="versionofextjs">VERSION OF ExtJS</h1>
+
+<p>3.1.0</p>
 
 <h1 id="installation">INSTALLATION</h1>
 
-<p><code>Task.ExtJS</code> is distributing via JSAN - <a href="http://openjsan.org">JavaScript Archive Network</a>. To install <code>Task.ExtJS</code> you'll need to install JSAN shell first - a small unix-shell-like program.
-It communicate directly with closest JSAN mirror and can download and install any JSAN module for you.</p>
+<p><code>Task.ExtJS</code> is distributing via JSAN - <a href="http://openjsan.org">JavaScript Archive Network</a>. To install <code>Task.ExtJS</code> you'll need to install JSAN shell first - a small,
+cross-platform, unix-shell-like program. It communicate directly with closest JSAN mirror and can download and install any JSAN module for you.</p>
 
 <p>JSAN shell is written in perl, so the 1st step is to obtain Perl.</p>
 
@@ -41,8 +45,6 @@ It communicate directly with closest JSAN mirror and can download and install an
 <p><em>NOTE:</em> After installation, you may need to relogin (or reboot) to see the updates in the PATH environment variable.</p>
 
 <h1 id="installingshell">2. INSTALLING SHELL</h1>
-
-<h2 id="installingshell">Installing shell</h2>
 
 <p>Launch a console (<code>cmd</code> on Windows). Then type:</p>
 
@@ -70,20 +72,25 @@ It communicate directly with closest JSAN mirror and can download and install an
     jsan&gt;
 </code></pre>
 
-<p>In the shell, type:</p>
+<p>If this is the first time you installing the JSAN module, setup the installation path ('prefix' setting can be saved, so you won't need to enter again):</p>
 
 <pre><code>    jsan&gt; set prefix /your/installation/path/
-
-    jsan&gt; install Task.ExtJS
 </code></pre>
 
-<p>Thats all, shell will download and install <code>Task.ExtJS</code> for you. Try <code>help</code> command or refer to <a href="http://search.cpan.org/dist/JSAN-Shell/lib/JSAN/Shell.pm">JSAN::Shell documentation</a> for details on using shell. </p>
+<p>Then, type:</p>
+
+<pre><code>    jsan&gt; install Task.ExtJS
+</code></pre>
+
+<p>Thats all, shell will download and install <code>Task.ExtJS</code> for you. </p>
+
+<p>For the list of available commands, try <code>help</code>. Also refer to <a href="http://search.cpan.org/dist/JSAN-Shell/lib/JSAN/Shell.pm">JSAN::Shell documentation</a> for details. </p>
 
 <h1 id="configuringyoursystem">4. CONFIGURING YOUR SYSTEM</h1>
 
-<p>After successfull completition of the procedure above, <code>Task.ExtJS</code> will be installed in the local JavaScript library.</p>
+<p>After successful completion of the procedure above, <code>Task.ExtJS</code> will be installed in your local JavaScript library (you've specified its location with 'prefix').</p>
 
-<p>The path to the library will be:</p>
+<p>For example, the path to the library can be:</p>
 
 <ul>
 <li>/usr/local/lib/jsan</li>
@@ -112,4 +119,4 @@ will point at the <code>lib</code> subdirectory of JSAN library: <code>/usr/loca
 
 <h1 id="copyrightandlicense">COPYRIGHT AND LICENSE</h1>
 
-<p>Please refer to <a href="">http://www.extjs.com/products/license.php</a></p>
+<p>Please refer to <a href="http://www.extjs.com/products/license.php">http://www.extjs.com/products/license.php</a></p>

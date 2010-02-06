@@ -2,7 +2,7 @@ use inc::Module::JSAN::DSL;
 
 name            Task.ExtJS
 
-version         '3.1.01'
+version         '3.100.000'
 author          'ExtJS team <services@extjs.com>'
 author          'Nickolay Platonov (aka SamuraiJack) <nplatonov@cpan.org>'
 

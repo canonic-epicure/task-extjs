@@ -23,14 +23,20 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-`Task.ExtJS` is JSAN distribution, containing ExtJS framework.
+`Task.ExtJS` is JSAN distribution, containing ExtJS framework. 
+
+
+VERSION OF ExtJS
+================
+
+3.1.0
 
 
 INSTALLATION
 ============
 
-`Task.ExtJS` is distributing via JSAN - [JavaScript Archive Network][jsan]. To install `Task.ExtJS` you'll need to install JSAN shell first - a small unix-shell-like program.
-It communicate directly with closest JSAN mirror and can download and install any JSAN module for you.
+`Task.ExtJS` is distributing via JSAN - [JavaScript Archive Network][jsan]. To install `Task.ExtJS` you'll need to install JSAN shell first - a small,
+cross-platform, unix-shell-like program. It communicate directly with closest JSAN mirror and can download and install any JSAN module for you.
 
 JSAN shell is written in perl, so the 1st step is to obtain Perl.
 
@@ -54,9 +60,6 @@ Windows users should install [Strawberry perl][straberry]. Straberry perl is pre
 
 2. INSTALLING SHELL
 ===================
-
-Installing shell
-----------------
 
 Launch a console (`cmd` on Windows). Then type:
 
@@ -83,21 +86,25 @@ This should launch a JSAN shell and display a prompt, similar to this:
         
         jsan>
     
-In the shell, type:
+If this is the first time you installing the JSAN module, setup the installation path ('prefix' setting can be saved, so you won't need to enter again):
         
         jsan> set prefix /your/installation/path/
 
+Then, type:
+
         jsan> install Task.ExtJS
 
-Thats all, shell will download and install `Task.ExtJS` for you. Try `help` command or refer to [JSAN::Shell documentation](http://search.cpan.org/dist/JSAN-Shell/lib/JSAN/Shell.pm) for details on using shell. 
+Thats all, shell will download and install `Task.ExtJS` for you. 
+
+For the list of available commands, try `help`. Also refer to [JSAN::Shell documentation](http://search.cpan.org/dist/JSAN-Shell/lib/JSAN/Shell.pm) for details. 
 
 
 4. CONFIGURING YOUR SYSTEM
 ==========================
 
-After successfull completition of the procedure above, `Task.ExtJS` will be installed in the local JavaScript library.
+After successful completion of the procedure above, `Task.ExtJS` will be installed in your local JavaScript library (you've specified its location with 'prefix').
 
-The path to the library will be:
+For example, the path to the library can be:
 
 - /usr/local/lib/jsan
 
@@ -129,7 +136,7 @@ Nickolay Platonov [nplatonov@cpan.org](mailto:nplatonov@cpan.org)
 COPYRIGHT AND LICENSE
 =====================
 
-Please refer to [http://www.extjs.com/products/license.php]()
+Please refer to <http://www.extjs.com/products/license.php>
 
 [jsan]: http://openjsan.org
 [straberry]: http://strawberryperl.com/
