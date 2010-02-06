@@ -4,7 +4,7 @@ rm -rf svnbuild/*
 rm -rf lib/*.js
 rm -rf resources/*
 
-java -jar bin/JSBuilder2.jar --projectFile /home/catalyst/Workspace/EclipseWorkspace/JavaScript/ExtJS-3.1.0/ext.jsb2 --homeDir svnbuild
+java -jar bin/JSBuilder2.jar --projectFile /home/catalyst/Workspace/EclipseWorkspace/JavaScript/ext-3.1.0/ext.jsb2 --homeDir svnbuild
 
 mkdir -p lib/Task/ExtJS/Adapter
 mkdir -p lib/Task/ExtJS/Debug/Adapter
