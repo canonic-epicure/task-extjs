@@ -1,10 +1,5 @@
-_build
-Build
-blib
+.build
 .project
 .externalToolBuilders
-MANIFEST.bak
-META.json
 /svnbuild/*
-/inc/*
-/Task.ExtJS-*
+/Task-ExtJS-*
