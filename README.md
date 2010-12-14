@@ -1,7 +1,7 @@
 Name
 ====
 
-Task.ExtJS - ExtJS framework, packaged in JSAN standard
+Task.ExtJS - ExtJS framework with some patches
 
 
 SYNOPSIS
@@ -23,7 +23,8 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-`Task.ExtJS` contains ExtJS framework, with some changes, which make it suiatable for bridging to [Joose](http://joose.it). 
+`Task.ExtJS` contains patched ExtJS framework. The patch allows to use [JooseX.Meta.Lazy](http://samuraijack.github.com/JooseX-Meta-Lazy)
+when bridging the ExtJS class system to [Joose](https://github.com/SamuraiJack/joosex-bridge-ext). 
 
 
 VERSION OF ExtJS
@@ -36,6 +37,11 @@ SEE ALSO
 ========
 
 Bridge from ExtJS to Joose: <https://github.com/SamuraiJack/joosex-bridge-ext>
+
+Joose IRC channel : [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1)
+ 
+Joose mailing list: <http://groups.google.com/group/joose-js>
+
 
 
 MAINTAINER
